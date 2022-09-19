@@ -10,4 +10,14 @@
 
 # Functionality & MVPs:
 ### In the Game,
-* Users will be able to select difficulty of the game.
+* Users will be see Instructions, How-To-Play and About the Game by clicking.
+* Users will be able to interact with the BGM On/Off switch.
+* Users will be able to pause the game and resume the game without starting a new game.
+* Users will be able to start a new game after they have either lose or win that game.
+* Mouse will start to draw (when the user clicks and holds on to the left click) when the mouse pointer is near the curved line.
+* Users will be able to select on levels that they want to play.
+
+
+# Technologies & Libraries, APIs:
+* APIs
+  * https://developer.mozilla.org/en-US/docs/Web/API
