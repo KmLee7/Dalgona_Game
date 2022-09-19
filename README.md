@@ -10,7 +10,4 @@
 
 # Functionality & MVPs:
 ### In the Game,
-#### Users will be able to select difficulty of the game.
-#### Users will be able to turn on and off bgm music.
-#### Users will be able to pause the game which will stop the timer from running.
-#### When the times ends, the game will display game-over page.
+* Users will be able to select difficulty of the game.
