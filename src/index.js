@@ -1,8 +1,8 @@
-const Heading = require('./scripts/heading');
+// const Heading = require('./scripts/heading');
 
-document.addEventListener('DOMContentLoaded', () => {
-    const canvas = document.getElementById('canvas');
-    const heading = new Heading('Hey Gamers!!');
+// document.addEventListener('DOMContentLoaded', () => {
+//     const canvas = document.getElementById('canvas');
+//     const heading = new Heading('Hey Gamers!!');
 
-    canvas.innerHTML = heading.heading;
-})
+//     canvas.innerHTML = heading.heading;
+// })
