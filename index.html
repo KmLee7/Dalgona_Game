@@ -10,27 +10,62 @@
   </head>
 
   <body>
-    <h1>Dalgonagonagona game</h1>
-    <canvas id="starCanvas" width="300" height="250"></canvas>
-    <script>
-        var canvas = document.getElementById('starCanvas');
-        var ctx = canvas.getContext('2d');
-        ctx.fillStyle = "light brown";
-        ctx.beginPath();
-        ctx.moveTo(108, 0.0);
-        ctx.lineTo(141, 70);
-        ctx.lineTo(218, 78.3);
-        ctx.lineTo(162, 131);
-        ctx.lineTo(175, 205);
-        ctx.lineTo(108, 170);
-        ctx.lineTo(41.2, 205);
-        ctx.lineTo(55, 131);
-        ctx.lineTo(1, 78);
-        ctx.lineTo(75, 68);
-        ctx.lineTo(108, 0);
-        ctx.closePath();
-        ctx.fill();
-     </script>
+    <section class="section">
+        <div class="nav"><h1 class="top">Dalgona Game(Ppop Gi)</h1></div>
+        <div class="body">
+          <div
+            style="width: 150px; height: 60vh; border: 1px solid black"
+            class="left"> 
+            <div class="timer">
+              Timer: 3:00:00:-00
+            </div>
+            <div style="height: 10px;"></div> 
+            <div class="score">
+              Score: 1025123214
+            </div>
+            <div style="height: 10px;"></div> 
+            <div class="percentage">
+              Percentage: 40%
+            </div>
+            <div style="height: 190px;"></div>
+            <button id="newGame">New Game</button>
+          </div>
+          <div 
+            style="width: 600px; height: 60vh; border: 1px solid black"
+            class="center">
+              <canvas id="starCanvas" width="600" height="460" style="background: url('https://i.stack.imgur.com/2tVNk.png')"></canvas>
+              <script>
+                  var canvas = document.getElementById('starCanvas');
+                  var ctx = canvas.getContext('2d');
+                  ctx.fillStyle = "#3F79BA";
+                  ctx.beginPath();
+                  ctx.moveTo(108, 0.0);
+                  ctx.lineTo(141, 70);
+                  ctx.lineTo(218, 78.3);
+                  ctx.lineTo(162, 131);
+                  ctx.lineTo(175, 205);
+                  ctx.lineTo(108, 170);
+                  ctx.lineTo(41.2, 205);
+                  ctx.lineTo(55, 131);
+                  ctx.lineTo(1, 78);
+                  ctx.lineTo(75, 68);
+                  ctx.lineTo(108, 0);
+                  ctx.closePath();
+                  ctx.fill();
+              </script>
+          </div>
+          <div 
+            style="width: 150px; height: 60vh; border: 1px solid black"
+            class="right" 
+          >
+          <button id="instructions">Instructions</button>
+          <div style="height: 30px;"></div>
+          <button id="how">How-To-Play</button>
+          <div style="height: 30px;"></div>
+          <button id="about">About the Game</button>
+          </div>
+        </div>
+    </section>
   </body>
 
 </html>

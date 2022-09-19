@@ -1,1 +1,53 @@
 // @import './styles/gamestyle.scss'
+
+.body {
+    justify-content: space-between; 
+    display: flex;
+}
+
+.timer {
+    font-size: 25px;
+    display: flex;
+
+}
+
+.score {
+    font-size: 25px;
+    display: flex;
+}
+
+.percentage {
+    font-size: 25px;
+    display: flex;
+}
+
+#instructions {
+    display: flex;
+    font-size: 26px;
+}
+
+#how {
+    display: flex;
+    font-size: 23.5px;
+}
+
+#about {
+    display: flex;
+    font-size: 18.30px;
+}
+
+.canvas {
+    display: flex;
+}
+
+#newGame {
+    display: flex;
+    font-size: 27px;
+}
+
+.top {
+    display: flex;
+    font-size: 36px;
+    justify-content: center;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
