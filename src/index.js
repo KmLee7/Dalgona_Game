@@ -1,26 +1,18 @@
-// const Heading = require('./scripts/heading');
 
 import { drawStar } from "./scripts/heading";
 
-// document.addEventListener('DOMContentLoaded', () => {
-//     const canvas = document.getElementById('canvas');
-//     const heading = new Heading('Hey Gamers!!');
-
-//     canvas.innerHTML = heading.heading;
-// })
 
 window.addEventListener('load', () => {
     const canvas = document.querySelector('#canvas');
     const ctx = canvas.getContext('2d');
-
-    // canvas.height = window.innerHeight;
-    // canvas.width = window.innerWidth;
+    
     let painting = false;
 
-    
     function startPosition(e) {
         painting = true;
         draw(e);
+        setInterval(updateCountdown, 1000); // NOT CORRECT
+    
     }
     
     function finishedPosition() {
@@ -32,15 +24,35 @@ window.addEventListener('load', () => {
         if (!painting) return;
         ctx.lineWidth = 5;
         ctx.lineCap = 'round';
-console.log(e)
+        console.log(e)
         ctx.lineTo(e.offsetX, e.offsetY);
         ctx.stroke();
         ctx.beginPath();
         ctx.moveTo(e.offsetX,e.offsetY);
     }
-
+    
     canvas.addEventListener('mousedown', startPosition);
     canvas.addEventListener('mouseup', finishedPosition);
     canvas.addEventListener('mousemove', draw); //e => draw(e));
     drawStar();
 });
+
+
+const timeLeft = document.getElementById('count-down');
+const startingMinutes = 3;
+let time = startingMinutes * 60;
+
+function updateCountdown() {
+    const minutes = Math.floor(time/60);
+    let seconds = time % 60;
+    
+    seconds = seconds < 10 ? '0' + seconds : seconds;
+    
+    timeLeft.innerHTML = `${minutes}:${seconds}`;
+    if (time === 0) {
+        
+    } else {
+        time -= 1;
+    }
+    
+}

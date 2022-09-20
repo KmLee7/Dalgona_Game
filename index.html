@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="./dist/main.css" />
-    <script src="./dist/main.js"></script>
     <title>Dalgona Game</title>
   </head>
 
@@ -16,9 +15,7 @@
           <div
             style="width: 150px; height: 60vh; border: 1px solid black"
             class="left"> 
-            <div class="timer">
-              Timer: 3:00:00:-00
-            </div>
+            <h3 class="timer">Timer: <span id="count-down">Ready?</span></h3>
             <div style="height: 10px;"></div> 
             <div class="score">
               Score: 1025123214
@@ -50,5 +47,7 @@
         </div>
     </section>
   </body>
+  <script src="./dist/main.js"></script>
+
 
 </html>
