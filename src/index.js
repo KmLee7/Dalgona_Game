@@ -5,6 +5,7 @@ import { drawStarCircle } from "./scripts/heading";
 import { newCanvas } from "./scripts/heading";
 import { starpoints } from "./scripts/points";
 import { circlepoints } from "./scripts/points";
+import { starcirclepoints} from "./scripts/points";
 
 const clearCanvas = document.getElementById('newGame');
 const levelOne = document.getElementById('one');
@@ -13,11 +14,11 @@ const levelThree = document.getElementById('three');
 const resultDisplay = document.getElementById('resultId');
 const perc = document.getElementById('percentage');
 var timer;
-// let start = false;
+
 
 const timeLeft = document.getElementById('count-down');
 const startingMinutes = 1; // change back to 3 after debugging.
-let time = startingMinutes * 10; // change 3 to 60 after debugging. 
+let time = startingMinutes * 60; // change 3 to 60 after debugging. 
 
 window.addEventListener('load', () => {
     let canvas = document.querySelector('#canvas');
@@ -38,7 +39,7 @@ class Player {
             seconds = seconds < 10 ? '0' + seconds : seconds;
             console.log('going')
             timeLeft.innerHTML = `${minutes}:${seconds}`;
-            if (time > 0) {
+            if (time > 0 && this.ongoing === true) {
                 time -= 1;
             } else {
                 this.timeEnd();
@@ -51,7 +52,11 @@ class Player {
         clearInterval(timer);
     }
     restartTime() {
-        time = startingMinutes * 3;
+        console.log('ongoing');
+        if (this.ongoing === true) {
+            this.ongoing = false;
+        }
+        time = startingMinutes * 60;
         perc.textContent = 0;
     }
 }
@@ -80,30 +85,45 @@ class Player {
         ctx.lineTo(e.offsetX, e.offsetY);
         if (player.level === 1) {
             circlepoints.forEach(point => {
-            if (Math.abs(e.offsetX - point[0]) <= 8 && Math.abs(e.offsetY - point[1]) <= 8) {
-                player.points.add(point);
+                if (Math.abs(e.offsetX - point[0]) <= 8 && Math.abs(e.offsetY - point[1]) <= 8) {
+                    player.points.add(point);
+                }
+            });
+            if (player.points.size >= (circlepoints.length * .80)) {
+                win();
             }
-        });
-    }
+            perc.textContent = ` ${Math.round((player.points.size / circlepoints.length) * 100)}%`;
+        }
         if (player.level === 2) {
             starpoints.forEach(point =>  {
-            if (Math.abs(e.offsetX - point[0]) <= 8 && Math.abs(e.offsetY - point[1]) <= 8) {
+                if (Math.abs(e.offsetX - point[0]) <= 8 && Math.abs(e.offsetY - point[1]) <= 8) {
                     player.points.add(point);
-           }
-        });
-    }
+                }
+            });
+            if (player.points.size >= (starpoints.length * .80)) {
+                win();
+            }
+            perc.textContent = ` ${Math.round((player.points.size / starpoints.length) * 100)}%`;
+        }
+        if (player.level === 3) {
+            starcirclepoints.forEach(point => {
+                if (Math.abs(e.offsetX - point[0]) <= 8 && Math.abs(e.offsetY - point[1]) <= 8) {
+                    player.points.add(point);
+                }
+            });
+            if (player.points.size >= (starcirclepoints.length * .80)) {
+                win();
+            }
+            perc.textContent = ` ${Math.round((player.points.size / starcirclepoints.length) * 100)}%`;
+        }
         ctx.stroke();
         ctx.beginPath();
         ctx.moveTo(e.offsetX,e.offsetY);
         if (timer === 0) {
             gameDone();
             // lose();
-            
         }
-        if (player.points.size >= (starpoints.length * .80)) {
-            win();
-        }
-         perc.textContent = ` ${Math.round((player.points.size / starpoints.length) * 100)}%`;
+        //  perc.textContent = ` ${Math.round((player.points.size / starpoints.length) * 100)}%`;
     }
     
     canvas.addEventListener('mousedown', startPosition);
@@ -112,6 +132,7 @@ class Player {
     clearCanvas.addEventListener('click', () => { // New Game
         ctx.reset();
         newCanvas();
+        // player.timeEnd();
         player.restartTime();
         player.points = new Set()
     });
@@ -119,6 +140,7 @@ class Player {
         ctx.reset();
         newCanvas();
         drawCircle();
+        // player.timeEnd();
         player.restartTime();
         player.level = 1;
         player.points = new Set()
@@ -127,6 +149,7 @@ class Player {
         ctx.reset();
         newCanvas();
         drawStar();
+        // player.timeEnd();
         player.restartTime();
         player.level = 2;
         player.points = new Set()
@@ -135,6 +158,7 @@ class Player {
         ctx.reset();
         newCanvas();
         drawStarCircle();
+        // player.timeEnd();
         player.restartTime();
         player.level = 3;
         player.points = new Set()
@@ -147,7 +171,7 @@ class Player {
     function win() {
         console.log(player.points.size,'points');
         console.log(starpoints.length, 'total');
-        console.log(circlepoints.length, 'total')
+        // console.log(circlepoints.length, 'total')
         resultDisplay.textContent = 'You win!';
 
         
