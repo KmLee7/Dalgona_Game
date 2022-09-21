@@ -1,19 +1,21 @@
 
-import { drawStar, newCanvas } from "./scripts/heading";
+import { drawStar } from "./scripts/heading";
 import { drawCircle } from "./scripts/heading";
-// import { newCanvas } from "./scripts/heading";
+import { drawStarCircle } from "./scripts/heading";
+import { newCanvas } from "./scripts/heading";
 
 const clearCanvas = document.getElementById('newGame');
 const levelOne = document.getElementById('one');
 const levelTwo = document.getElementById('two');
+const levelThree = document.getElementById('three');
 const resultDisplay = document.getElementById('resultId');
 
 let start = false;
 // const timerId = setInterval(updateCountdown,1000);
 
 window.addEventListener('load', () => {
-    const canvas = document.querySelector('#canvas');
-    const ctx = canvas.getContext('2d');
+    let canvas = document.querySelector('#canvas');
+    let ctx = canvas.getContext('2d');
     
     let painting = false;
 
@@ -43,20 +45,30 @@ window.addEventListener('load', () => {
         ctx.beginPath();
         ctx.moveTo(e.offsetX,e.offsetY);
         lose();
-        win();
+        // win();
     }
 
     canvas.addEventListener('mousedown', startPosition);
     canvas.addEventListener('mouseup', finishedPosition);
     canvas.addEventListener('mousemove', draw); //e => draw(e));
     clearCanvas.addEventListener('click', newCanvas);
-    levelOne.addEventListener('click', drawCircle);
-    levelTwo.addEventListener('click', drawStar);
+    levelOne.addEventListener('click', () => {
+        newCanvas();
+        drawCircle();
+    });
+    levelTwo.addEventListener('click', () => {
+        newCanvas();
+        drawStar();
+    });
+    levelThree.addEventListener('click', () => {
+        newCanvas();
+        drawStarCircle();
+    });
 });
 
 const timeLeft = document.getElementById('count-down');
-const startingMinutes = 1;
-let time = startingMinutes * 3;
+const startingMinutes = 1; // change back to 3 after debugging.
+let time = startingMinutes * 3; // change 3 to 60 after debugging. 
 
 function updateCountdown() {
     const minutes = Math.floor(time/60);
@@ -70,13 +82,13 @@ function updateCountdown() {
     }
 }
 
-function win() {
-    if (time !== 0) {
-        // if (percent >= 85) {
-            resultDisplay.textContent = 'You win!';
-        // }
-    }
-}
+// function win() {
+//     if (time !== 0) {
+//         // if (percent >= 85) {
+//             resultDisplay.textContent = 'You win!';
+//         // }
+//     }
+// }
 
 function lose() {
     if (time === 0) {
