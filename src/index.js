@@ -53,14 +53,17 @@ window.addEventListener('load', () => {
     canvas.addEventListener('mousemove', draw); //e => draw(e));
     clearCanvas.addEventListener('click', newCanvas);
     levelOne.addEventListener('click', () => {
+        ctx.reset();
         newCanvas();
         drawCircle();
     });
     levelTwo.addEventListener('click', () => {
+        ctx.reset();
         newCanvas();
         drawStar();
     });
     levelThree.addEventListener('click', () => {
+        ctx.reset();
         newCanvas();
         drawStarCircle();
     });
