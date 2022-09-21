@@ -15,6 +15,11 @@
   display: flex;
 }
 
+.result {
+  font-size: 22px;
+  display: flex;
+}
+
 .percentage {
   font-size: 22px;
   display: flex;

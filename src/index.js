@@ -1,13 +1,22 @@
 
-import { drawStar } from "./scripts/heading";
+import { drawStar, newCanvas } from "./scripts/heading";
 import { drawCircle } from "./scripts/heading";
+// import { newCanvas } from "./scripts/heading";
+
+const clearCanvas = document.getElementById('newGame');
+const levelOne = document.getElementById('one');
+const levelTwo = document.getElementById('two');
+const resultDisplay = document.getElementById('resultId');
+
 let start = false;
+// const timerId = setInterval(updateCountdown,1000);
 
 window.addEventListener('load', () => {
     const canvas = document.querySelector('#canvas');
     const ctx = canvas.getContext('2d');
     
     let painting = false;
+
     function startPosition(e) {
         painting = true;
             if (painting === true) {
@@ -28,27 +37,26 @@ window.addEventListener('load', () => {
         if (!painting) return;
         ctx.lineWidth = 5;
         ctx.lineCap = 'round';
-        // console.log(e)
         ctx.strokeStyle = 'white'
         ctx.lineTo(e.offsetX, e.offsetY);
         ctx.stroke();
         ctx.beginPath();
         ctx.moveTo(e.offsetX,e.offsetY);
+        lose();
+        win();
     }
-    
+
     canvas.addEventListener('mousedown', startPosition);
     canvas.addEventListener('mouseup', finishedPosition);
     canvas.addEventListener('mousemove', draw); //e => draw(e));
-    drawCircle();
-    drawStar();
+    clearCanvas.addEventListener('click', newCanvas);
+    levelOne.addEventListener('click', drawCircle);
+    levelTwo.addEventListener('click', drawStar);
 });
 
-
 const timeLeft = document.getElementById('count-down');
-const startingMinutes = 3;
-let time = startingMinutes * 60;
-
-// setInterval(updateCountdown, 1000); 
+const startingMinutes = 1;
+let time = startingMinutes * 3;
 
 function updateCountdown() {
     const minutes = Math.floor(time/60);
@@ -56,10 +64,26 @@ function updateCountdown() {
     
     seconds = seconds < 10 ? '0' + seconds : seconds;
     
-
     timeLeft.innerHTML = `${minutes}:${seconds}`;
     if (time !== 0) {
         time -= 1;
     }
-    
+}
+
+function win() {
+    if (time !== 0) {
+        // if (percent >= 85) {
+            resultDisplay.textContent = 'You win!';
+        // }
+    }
+}
+
+function lose() {
+    if (time === 0) {
+        // if (percent < 85) {
+            resultDisplay.textContent = 'You Lose!';
+            // clearInterval(setInterval(startPosition,1000));
+            // canvas.removeEventListener('mousedown', startPosition);
+        // }
+    }
 }

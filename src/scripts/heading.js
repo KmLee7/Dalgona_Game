@@ -1,10 +1,16 @@
+export function newCanvas() {
+    let canvas = document.getElementById('canvas2');
+    let ctx = canvas.getContext('2d');
+    ctx.reset();
+}
+
 export function drawCircle() {
-    var canvas = document.getElementById("canvas2");
-    var ctx = canvas.getContext("2d");
+    let canvas = document.getElementById("canvas2");
+    let ctx = canvas.getContext("2d");
     ctx.strokeStyle = "black";
     ctx.lineWidth = 5;
     ctx.beginPath();
-    ctx.arc(298, 255, 120, 0, 2 * Math.PI);
+    ctx.arc(298, 258, 120, 0, 2 * Math.PI);
     ctx.closePath();
     ctx.stroke();
 }
@@ -26,7 +32,7 @@ export function drawStar() {
     ctx.lineTo(265, 215);
     ctx.lineTo(298, 145.0);
     ctx.closePath();
-    ctx.stroke();
+    ctx.stroke(); 
     
 }
 
