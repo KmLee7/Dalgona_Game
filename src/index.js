@@ -1,6 +1,6 @@
 
 import { drawStar } from "./scripts/heading";
-
+import { drawCircle } from "./scripts/heading";
 let start = false;
 
 window.addEventListener('load', () => {
@@ -29,6 +29,7 @@ window.addEventListener('load', () => {
         ctx.lineWidth = 5;
         ctx.lineCap = 'round';
         // console.log(e)
+        ctx.strokeStyle = 'white'
         ctx.lineTo(e.offsetX, e.offsetY);
         ctx.stroke();
         ctx.beginPath();
@@ -38,6 +39,7 @@ window.addEventListener('load', () => {
     canvas.addEventListener('mousedown', startPosition);
     canvas.addEventListener('mouseup', finishedPosition);
     canvas.addEventListener('mousemove', draw); //e => draw(e));
+    drawCircle();
     drawStar();
 });
 

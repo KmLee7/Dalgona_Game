@@ -32,7 +32,7 @@
 
 #about {
   display: flex;
-  font-size: 18.3px;
+  font-size: 18.75px;
 }
 
 .canvas {
@@ -49,4 +49,12 @@
   font-size: 36px;
   justify-content: center;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", Arial, sans-serif;
+}
+
+#one,
+#two,
+#three {
+  height: 40px;
+  width: 100px;
+  font-size: 18px;
 }
