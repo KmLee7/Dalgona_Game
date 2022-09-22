@@ -27,16 +27,15 @@ howto.addEventListener('click', () => {
     howto.innerHTML = 'Select level that you want to play. Click on game and start tracing the shape line!'
 })
 
-aboutgame = document.getElementById('click', () => {
-    aboutgame.innerHTML = ''
+aboutgame.addEventListener('click', () => {
+    aboutgame.innerHTML = 'Dalgona Game(ppopgi) was a popular street snack/game in the 70s and 80s and became well-known after it was played in one of the episode of the Netflix series Squid Game. I created this game to give the users an experience of poppgi'
 })
 
 var timer;
 
-
 const timeLeft = document.getElementById('count-down');
 const startingMinutes = 1; // change back to 3 after debugging.
-let time = startingMinutes * 6; // change 3 to 60 after debugging. 
+let time = startingMinutes * 10; // change 3 to 60 after debugging. 
 
 window.addEventListener('load', () => {
     let canvas = document.querySelector('#canvas');
@@ -72,10 +71,10 @@ class Player {
     }
     restartTime() {
         console.log('ongoing');
-        time = startingMinutes * 6;
         if (this.ongoing === true) {
             this.ongoing = false;
         }
+        time = startingMinutes * 10;
         perc.textContent = 0;
     }
 }
@@ -102,17 +101,21 @@ class Player {
         ctx.lineCap = 'round';
         ctx.strokeStyle = 'white'
         ctx.lineTo(e.offsetX, e.offsetY);
+
         if (player.level === 1) {
             circlepoints.forEach(point => {
                 if (Math.abs(e.offsetX - point[0]) <= 8 && Math.abs(e.offsetY - point[1]) <= 8) {
                     player.points.add(point);
                 }
             });
-            // if (player.ongoing === false && player.points.size >= (circlepoints.length * .80)) {
-            //     win();
-            // } else {
-            //     lose();
-            // }
+            if (player.ongoing === false) {
+                if (player.points.size >= (circlepoints.length * .80)) {
+                    win();
+                } else {
+                    lose();
+                }
+            }
+            if (time === 0) return; 
             perc.textContent = ` ${Math.round((player.points.size / circlepoints.length) * 100)}%`;
             pts.textContent = `${Math.round(player.score * (player.points.size / circlepoints.length))}`;
         }
@@ -122,11 +125,14 @@ class Player {
                     player.points.add(point);
                 }
             });
-            // if (player.ongoing === false && player.points.size >= (starpoints.length * .80)) {
-            //     win();
-            // } else {
-            //     lose();
-            // }
+            if (player.ongoing === false ) {
+                if (player.points.size >= (starpoints.length * .80)) {
+                    win();
+                } else {
+                    lose();
+                }
+            }
+            if (time === 0) return; 
             perc.textContent = ` ${Math.round((player.points.size / starpoints.length) * 100)}%`;
             pts.textContent = `${Math.round(player.score * (player.points.size / starpoints.length))}`;
         }
@@ -137,31 +143,29 @@ class Player {
                 }
             });
             
-            // if (player.ongoing === false && player.points.size >= (starcirclepoints.length * .80)) {
-            //     win();
-            // } else {
-            //     lose();
-            // }
+            if (player.ongoing === false ) {
+                if (player.points.size >= (starcirclepoints.length * .80)) win();
+                else {lose()}
+            }
+            if (time === 0) return; 
             perc.textContent = ` ${Math.round((player.points.size / starcirclepoints.length) * 100)}%`;
             pts.textContent = `${Math.round(player.score * (player.points.size / starcirclepoints.length))}`;
         }
         ctx.stroke();
         ctx.beginPath();
         ctx.moveTo(e.offsetX,e.offsetY);
-       
-        //  perc.textContent = ` ${Math.round((player.points.size / starpoints.length) * 100)}%`;
     }
-    
-    canvas.addEventListener('mousedown', startPosition);
-    canvas.addEventListener('mouseup', finishedPosition);
-    canvas.addEventListener('mousemove', draw); //e => draw(e));
+        canvas.addEventListener('mousedown', startPosition);
+        canvas.addEventListener('mouseup', finishedPosition);
+        canvas.addEventListener('mousemove', draw); //e => draw(e));
+
     clearCanvas.addEventListener('click', () => { // New Game
         ctx.reset();
         newCanvas();
         player.restartTime();
-        player.points = new Set()
-       
+        player.points = new Set();
     });
+
     levelOne.addEventListener('click', () => { // Level 1
         ctx.reset();
         newCanvas();
@@ -169,50 +173,31 @@ class Player {
         player.restartTime();
         player.level = 1;
         player.points = new Set();
-        
     });
+    
     levelTwo.addEventListener('click', () => { // Level 2
         ctx.reset();
         newCanvas();
         drawStar();
         player.restartTime();
         player.level = 2;
-        player.points = new Set()
-       
+        player.points = new Set();
     });
+
     levelThree.addEventListener('click', () => { // Level 3
         ctx.reset();
         newCanvas();
         drawStarCircle();
         player.restartTime();
         player.level = 3;
-        player.points = new Set()
-        
+        player.points = new Set();
     });
 
-
-
-
-
     function win() {
-        if (timer === 0) {
-            return resultDisplay.textContent = 'You win!';
-        }
-        // canvas.removeEventListener('mousedown',startPosition);
-        // canvas.removeEventListener('mouseup', finishedPosition);
-        // canvas.removeEventListener('mousemove', draw);
+        resultDisplay.textContent = 'You win!';
     }
 
     function lose() {
-        if (timer === 0) {
-         return resultDisplay.textContent = 'You Lose!';
-        // canvas.removeEventListener('mousedown',startPosition);
-        // canvas.removeEventListener('mouseup', finishedPosition);
-        // canvas.removeEventListener('mousemove', draw);
-        }
-    }
-
-    
-
-    
+        resultDisplay.textContent = 'You Lose!';
+    }   
 });

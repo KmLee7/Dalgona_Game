@@ -23,25 +23,35 @@
     font-size: 22px;
     display: flex;
 }
-.button:hover {
+
+.right {
+    display: inline-block;
+}
+.button {
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 #instructions {
     display: flex;
     font-size: 26px;
     justify-content: center;
+    align-items: center;
 }
 
 
 #how {
     display: flex;
     font-size: 23.5px;
+    justify-content: center;
+    align-items: center;
 }
 
 #about {
     display: flex;
     font-size: 18.75px;
+    justify-content: center;
+    align-items: center;
 }
 
 .canvas {
