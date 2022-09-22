@@ -11,12 +11,114 @@
 # Functionality & MVPs:
 ### In the Game,
 * Users will be see Instructions, How-To-Play and About the Game by clicking.
-* Users will be able to interact with the BGM On/Off switch.
-* Users will be able to pause the game and resume the game without starting a new game.
-* Users will be able to start a new game after they have either lose or win that game.
-* Mouse will start to draw (when the user clicks and holds on to the left click) when the mouse pointer is near the curved line.
-* Users will be able to select on levels that they want to play.
+* Mouse will start to draw (when the user clicks and holds on to the left click) when the mouse pointer is near the curved in line. Game will observe the difference between shape coordinates (x,y) and the mouse coordinates (x,y). Had to pin point the x and y of the shape and created an array of coordinates so it's not 100% accurate. and compared the mouse (when clicking) coordinates.
 
+```export let starpoints = [
+    [298, 144],
+    [290, 167],
+    [281, 182],
+    [266, 214],
+    [242, 218],
+    [218, 221],
+    [193, 224],
+    [209, 242],
+    [227, 259],
+    [245, 277],
+    [241, 300],
+    [236, 326],
+    [232, 350],
+    [252, 339],
+    [275, 328],
+    [300, 315],
+    [322, 328],
+    [347, 341],
+    [367, 353],
+    [363, 331],
+    [359, 310],
+    [352, 279],
+    [368, 262],
+    [387, 243],
+    [409, 224],
+    [382, 219],
+    [358, 218],
+    [333, 215],
+    [310, 149],
+    [309, 169]
+  ];
+  
+  export let circlepoints = [
+    [293, 139],
+    [262, 145],
+    [231, 160],
+    [205, 184],
+    [187, 215],
+    [178, 254],
+    [183, 292],
+    [200, 327],
+    [224, 352],
+    [256, 371],
+    [288, 379],
+    [321, 375],
+    [353, 365],
+    [378, 349],
+    [399, 324],
+    [414, 291],
+    [418, 255],
+    [412, 219],
+    [398, 192],
+    [374, 165],
+    [347, 149],
+    [320, 141]
+  ];
+  ```
+  
+  ```
+  function draw(e) {
+        if (!painting) return;
+        ctx.lineWidth = 5;
+        ctx.lineCap = 'round';
+        ctx.strokeStyle = 'white'
+        ctx.lineTo(e.offsetX, e.offsetY);
+
+        if (player.level === 1) {
+            circlepoints.forEach(point => {
+                if (Math.abs(e.offsetX - point[0]) <= 8 && Math.abs(e.offsetY - point[1]) <= 8) {
+                    player.points.add(point);
+                }
+            });
+            if (player.ongoing === false) {
+                if (player.points.size >= (circlepoints.length * .80)) {
+                    win();
+                } else {
+                    lose();
+                }
+            }
+            if (time === 0) return; 
+            perc.textContent = ` ${Math.round((player.points.size / circlepoints.length) * 100)}%`;
+            pts.textContent = `${Math.round(player.score * (player.points.size / circlepoints.length))}`;
+        }
+```
+
+* Users will be able to select on levels that they want to play.
+```
+levelOne.addEventListener('click', () => { // Level 1
+        ctx.reset();
+        newCanvas();
+        drawCircle();
+        player.restartTime();
+        player.level = 1;
+        player.points = new Set();
+    });
+```
+* Users will be able to start a new game after they have either lose or win that game.
+```
+clearCanvas.addEventListener('click', () => { // New Game
+        ctx.reset();
+        newCanvas();
+        player.restartTime();
+        player.points = new Set();
+    });
+```
 
 # Technologies & Libraries, APIs:
 * APIs
