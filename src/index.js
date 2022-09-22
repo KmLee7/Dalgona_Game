@@ -53,8 +53,8 @@ aboutgame.addEventListener('click', () => {
 var timer;
 
 const timeLeft = document.getElementById('count-down');
-const startingMinutes = 1; // change back to 3 after debugging.
-let time = startingMinutes * 10; // change 3 to 60 after debugging. 
+const startingMinutes = 1; // change back to 1 after debugging.
+let time = startingMinutes * 15; // change 3 to 25 after debugging. 
 
 window.addEventListener('load', () => {
     let canvas = document.querySelector('#canvas');
@@ -93,7 +93,7 @@ class Player {
         if (this.ongoing === true) {
             this.ongoing = false;
         }
-        time = startingMinutes * 10;
+        time = startingMinutes * 15;
         perc.textContent = 0;
     }
 }
