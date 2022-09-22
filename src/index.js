@@ -1,4 +1,5 @@
 
+import { loadPreset } from "@babel/core/lib/config/files";
 import { drawStar } from "./scripts/heading";
 import { drawCircle } from "./scripts/heading";
 import { drawStarCircle } from "./scripts/heading";
@@ -13,12 +14,29 @@ const levelTwo = document.getElementById('two');
 const levelThree = document.getElementById('three');
 const resultDisplay = document.getElementById('resultId');
 const perc = document.getElementById('percentage');
+const pts = document.getElementById('score');
+const instruct = document.getElementById('instructions');
+const howto = document.getElementById('how');
+const aboutgame = document.getElementById('about');
+
+
+instruct.addEventListener('click', () => {
+    instruct.innerHTML = 'Your goal is to trace through the curved inline (black line) of the shape depending on level. Timer will start when you click on the game. Highest point you can achieve is 1000. Good Luck!'
+})
+howto.addEventListener('click', () => {
+    howto.innerHTML = 'Select level that you want to play. Click on game and start tracing the shape line!'
+})
+
+aboutgame = document.getElementById('click', () => {
+    aboutgame.innerHTML = ''
+})
+
 var timer;
 
 
 const timeLeft = document.getElementById('count-down');
 const startingMinutes = 1; // change back to 3 after debugging.
-let time = startingMinutes * 60; // change 3 to 60 after debugging. 
+let time = startingMinutes * 6; // change 3 to 60 after debugging. 
 
 window.addEventListener('load', () => {
     let canvas = document.querySelector('#canvas');
@@ -30,6 +48,7 @@ class Player {
         this.points = new Set();
         this.ongoing = false;
         this.level = 0;
+        this.score = 1000;
     }
     timeStart() {
         this.ongoing = true;
@@ -53,10 +72,10 @@ class Player {
     }
     restartTime() {
         console.log('ongoing');
+        time = startingMinutes * 6;
         if (this.ongoing === true) {
             this.ongoing = false;
         }
-        time = startingMinutes * 60;
         perc.textContent = 0;
     }
 }
@@ -89,10 +108,13 @@ class Player {
                     player.points.add(point);
                 }
             });
-            if (player.points.size >= (circlepoints.length * .80)) {
-                win();
-            }
+            // if (player.ongoing === false && player.points.size >= (circlepoints.length * .80)) {
+            //     win();
+            // } else {
+            //     lose();
+            // }
             perc.textContent = ` ${Math.round((player.points.size / circlepoints.length) * 100)}%`;
+            pts.textContent = `${Math.round(player.score * (player.points.size / circlepoints.length))}`;
         }
         if (player.level === 2) {
             starpoints.forEach(point =>  {
@@ -100,10 +122,13 @@ class Player {
                     player.points.add(point);
                 }
             });
-            if (player.points.size >= (starpoints.length * .80)) {
-                win();
-            }
+            // if (player.ongoing === false && player.points.size >= (starpoints.length * .80)) {
+            //     win();
+            // } else {
+            //     lose();
+            // }
             perc.textContent = ` ${Math.round((player.points.size / starpoints.length) * 100)}%`;
+            pts.textContent = `${Math.round(player.score * (player.points.size / starpoints.length))}`;
         }
         if (player.level === 3) {
             starcirclepoints.forEach(point => {
@@ -111,18 +136,19 @@ class Player {
                     player.points.add(point);
                 }
             });
-            if (player.points.size >= (starcirclepoints.length * .80)) {
-                win();
-            }
+            
+            // if (player.ongoing === false && player.points.size >= (starcirclepoints.length * .80)) {
+            //     win();
+            // } else {
+            //     lose();
+            // }
             perc.textContent = ` ${Math.round((player.points.size / starcirclepoints.length) * 100)}%`;
+            pts.textContent = `${Math.round(player.score * (player.points.size / starcirclepoints.length))}`;
         }
         ctx.stroke();
         ctx.beginPath();
         ctx.moveTo(e.offsetX,e.offsetY);
-        if (timer === 0) {
-            gameDone();
-            // lose();
-        }
+       
         //  perc.textContent = ` ${Math.round((player.points.size / starpoints.length) * 100)}%`;
     }
     
@@ -132,36 +158,36 @@ class Player {
     clearCanvas.addEventListener('click', () => { // New Game
         ctx.reset();
         newCanvas();
-        // player.timeEnd();
         player.restartTime();
         player.points = new Set()
+       
     });
     levelOne.addEventListener('click', () => { // Level 1
         ctx.reset();
         newCanvas();
         drawCircle();
-        // player.timeEnd();
         player.restartTime();
         player.level = 1;
-        player.points = new Set()
+        player.points = new Set();
+        
     });
     levelTwo.addEventListener('click', () => { // Level 2
         ctx.reset();
         newCanvas();
         drawStar();
-        // player.timeEnd();
         player.restartTime();
         player.level = 2;
         player.points = new Set()
+       
     });
     levelThree.addEventListener('click', () => { // Level 3
         ctx.reset();
         newCanvas();
         drawStarCircle();
-        // player.timeEnd();
         player.restartTime();
         player.level = 3;
         player.points = new Set()
+        
     });
 
 
@@ -169,27 +195,24 @@ class Player {
 
 
     function win() {
-        console.log(player.points.size,'points');
-        console.log(starpoints.length, 'total');
-        // console.log(circlepoints.length, 'total')
-        resultDisplay.textContent = 'You win!';
-
-        
+        if (timer === 0) {
+            return resultDisplay.textContent = 'You win!';
+        }
+        // canvas.removeEventListener('mousedown',startPosition);
+        // canvas.removeEventListener('mouseup', finishedPosition);
+        // canvas.removeEventListener('mousemove', draw);
     }
 
-    // function lose() {
-    //     if (time === 0) {
-    //         // if (percent < 85) {
-    //             resultDisplay.textContent = 'You Lose!';
-    //             // clearInterval(setInterval(startPosition,1000));
-    //             // canvas.removeEventListener('mousedown', startPosition);
-    //         // }
-    //     }
-    // }
-
-    function gameDone() {
-        if (time === 0) {
-            console.log(player.points.size);
+    function lose() {
+        if (timer === 0) {
+         return resultDisplay.textContent = 'You Lose!';
+        // canvas.removeEventListener('mousedown',startPosition);
+        // canvas.removeEventListener('mouseup', finishedPosition);
+        // canvas.removeEventListener('mousemove', draw);
         }
     }
+
+    
+
+    
 });

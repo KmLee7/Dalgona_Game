@@ -25,9 +25,15 @@
   display: flex;
 }
 
+.button:hover {
+  display: flex;
+  justify-content: center;
+}
+
 #instructions {
   display: flex;
   font-size: 26px;
+  justify-content: center;
 }
 
 #how {
