@@ -34,7 +34,7 @@
 }
 #instructions {
     display: flex;
-    font-size: 26px;
+    font-size: 23.5px;
     justify-content: center;
     align-items: center;
 }
@@ -49,9 +49,12 @@
 
 #about {
     display: flex;
-    font-size: 18.75px;
+    font-size: 23.5px;
     justify-content: center;
     align-items: center;
+}
+.popped {
+    position: absolute;
 }
 
 .canvas {
@@ -67,6 +70,7 @@
     display: flex;
     font-size: 36px;
     justify-content: center;
+    color: rgb(255, 255, 255);
     font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
 }
 

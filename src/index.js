@@ -21,14 +21,33 @@ const aboutgame = document.getElementById('about');
 
 
 instruct.addEventListener('click', () => {
-    instruct.innerHTML = 'Your goal is to trace through the curved inline (black line) of the shape depending on level. Timer will start when you click on the game. Highest point you can achieve is 1000. Good Luck!'
+    if (!instruct.classList.contains('popped'))
+    {instruct.classList.add('popped');
+    instruct.innerHTML = 'Your goal is to trace through the curved inline (black line) of the shape depending on level. Timer will start when you click on the game. Highest point you can achieve is 1000. Good Luck!'}
+    else 
+    {instruct.innerHTML = 'Instructions'
+    instruct.classList.remove('popped');
+}
 })
 howto.addEventListener('click', () => {
-    howto.innerHTML = 'Select level that you want to play. Click on game and start tracing the shape line!'
+    if (!howto.classList.contains('popped')) {
+        howto.classList.add('popped');
+        howto.innerHTML = 'Select level that you want to play. Click on game and start tracing the shape line!'
+    } else {
+        howto.classList.remove('popped');
+        howto.innerHTML = 'How-To-Play'
+    }
+
 })
 
 aboutgame.addEventListener('click', () => {
-    aboutgame.innerHTML = 'Dalgona Game(ppopgi) was a popular street snack/game in the 70s and 80s and became well-known after it was played in one of the episode of the Netflix series Squid Game. I created this game to give the users an experience of poppgi'
+    if (!aboutgame.classList.contains('popped')) {
+        aboutgame.classList.add('popped');
+        aboutgame.innerHTML = 'Dalgona Game(ppopgi) was a popular street snack/game in the 70s and 80s and became well-known after it was played in one of the episode of the Netflix series Squid Game. I created this game to give the users an experience of poppgi'
+    } else {
+        aboutgame.classList.remove('popped');
+        aboutgame.innerHTML = 'About the Game'
+    }
 })
 
 var timer;

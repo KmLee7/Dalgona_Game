@@ -1,10 +1,14 @@
 # Dalgona Game (Ppopgi)
+### Live Link - https://kmlee7.github.io/Dalgona_Game/
 #### Dalgona Game is a 2D game where you have to cut out the carved symbols(shape) on the dalgona candy. One of the games I used to play in Korea as a young kid and it became more known after it was played in Squid Game (Korean Netflix Drama). Dalgona game will have variety of difficulties ('normal', 'hard' and  'im_possible'(depending if I can make the shape)). The game will be played with just a mouse and you can cut the out carved lines by clicking on your left click on your mouse. It will have certain amount of percentage you have to complete in certain amount time. This game aims to replicate an experience of Ppopgi that was played on Squid Game.
+
+![wireframe](https://i.imgur.com/W8eh7Nk.jpg)
 
 # Wireframe:
 ![wireframe](https://i.imgur.com/soIuyeG.png)
 
-
+# Instructions:
+* Your goal is to trace through the curved inline (black line) of the shape depending on level. Timer will start when you click on the game. Highest point you can achieve is 1000. Good Luck!
 
 
 
@@ -123,6 +127,7 @@ clearCanvas.addEventListener('click', () => { // New Game
 # Technologies & Libraries, APIs:
 * APIs
   * https://developer.mozilla.org/en-US/docs/Web/API
+* Vanilla JavaScript
 
 # Implementation & Timeline:
 * Friday Afternoon & Weekend:
@@ -148,3 +153,14 @@ clearCanvas.addEventListener('click', () => { // New Game
 * Thursday:
   * Deploy to Github pages.
 
+
+# Future Implementations
+* Change the hitpoints to create image data of the shape and compare the mouse coordinates to have more accurate percentage.
+* Add BGM music on and off switch
+* Add Pause and Resume Button.
+* Change canvas image to drawing of Dalgona instead.
+* Add harder level
+
+# Crediting and Citing
+* Dalgona Candy image - https://120pro.tistory.com/107
+* Squid Game image - https://www.netflix.com/
