@@ -1,50 +1,129 @@
 <html lang="en">
-
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <link rel="stylesheet" href="./dist/main.css" />
     <title>Dalgona Game</title>
-    <link type="image/png" sizes="16x16" rel="icon" href="https://img.icons8.com/external-ddara-lineal-color-ddara/64/000000/external-dalgona-desserts-ddara-lineal-color-ddara.png">
+    <link
+      type="image/png"
+      sizes="16x16"
+      rel="icon"
+      href="https://img.icons8.com/external-ddara-lineal-color-ddara/64/000000/external-dalgona-desserts-ddara-lineal-color-ddara.png"
+    />
   </head>
 
-  <body style="background-image: url('./src/squidgame.jpeg'); background-attachment: fixed">
+  <body style="background-color: beige">
     <section class="section">
-      <a target="_blank" href="https://github.com/KmLee7/Dalgona_Game"><img src="https://img.icons8.com/plasticine/100/000000/github-squared.png" alt=""></a>
-      <a target="_blank" href=""><img src="https://img.icons8.com/plasticine/100/000000/linkedin.png" alt=""></a>
-        <div class="nav"><h1 class="top">Dalgona Game(Ppop Gi)</h1></div>
-        <div class="body">
-          <div class="left" style="width: 170px; height: 320px; border: 1px solid black; background-color: white";> 
-            <h3 class="timer">Timer: <span id="count-down"></span></h3>
-            <div style="height: 10px;"></div> 
-            <h3 class="percentage">Percentage: &nbsp <span id="percentage"> &nbsp %</span></h3>
-            <div style="height: 10px;"></div> 
-            <h3 class="score">Score: &nbsp <span id="score">&nbsp </span></h3>
-            <div style="height: 10px;"></div> 
-            <h3 class="result">Result: &nbsp <span id="resultId">&nbsp </span></h3>
-            <div style="height: 70px;"></div>
-            <button id="one">Level 1</button>
-            <div style="height: 10px;"></div>
-            <button id="two">Level 2</button>
-            <div style="height: 10px;"></div>
-            <button id="three">Level 3</button>
-            <div style="height: 10px;"></div>
-            <button id="newGame">New Game</button>
-          </div>
-          <div class="center" style="width: 600px; height: 460px; border: 1px solid black">
-              <canvas id="canvas" width="600" height="460" style="position: absolute; z-index: 5; "></canvas>
-              <canvas id="canvas2" width="600" height="460" style="position: absolute; background: url('https://t1.daumcdn.net/cfile/tistory/25613F3B57F5C7E239')"></canvas>
-          </div>
-          <div class="right" style="width: 150px; height: 240px" >
-            <a ></a>
-          <button id="instructions">Instructions</button>
-          <div style="height: 40px;"></div>
-          <button id="how">How-To-Play</button>
-          <div style="height: 40px;"></div>
-          <button id="about">About the Game</button>
-          </div>
+      <div class="nav">
+        <div
+          class="nav-left"
+          style="
+            border: 1px solid beige;
+            border-radius: 8px;
+            box-shadow: 1px 1px 2px 2px lightsalmon;
+            background-color: white;
+            margin-left: 10px;
+            margin-top: 10px;
+          "
+        >
+          <a target="_blank" href="https://github.com/KmLee7/Dalgona_Game"
+            ><img
+              src="https://img.icons8.com/plasticine/100/000000/github-squared.png"
+              alt="gihub"
+          /></a>
+          <a
+            target="_blank"
+            href="https://www.linkedin.com/in/kyungmin-lee-1767a6255/"
+            ><img
+              src="https://img.icons8.com/plasticine/100/000000/linkedin.png"
+              alt="linkedin"
+          /></a>
         </div>
+        <div
+          class="nav-right"
+          style="
+            border: 1px solid beige;
+            border-radius: 8px;
+            box-shadow: 1px 1px 2px 2px lightsalmon;
+            background-color: white;
+            margin-top: 10px;
+          "
+        >
+          Dalgona Game(Ppop Gi)
+        </div>
+      </div>
+      <div style="height: 22px"></div>
+      <div class="body">
+        <div
+          class="left"
+          style="
+            width: 170px;
+            height: 340px;
+            border: 1px solid beige;
+            border-radius: 8px;
+            box-shadow: 1px 1px 2px 2px lightsalmon;
+            background-color: white;
+          "
+          ;
+        >
+          <h3 class="timer">Timer: <span id="count-down"></span></h3>
+          <div style="height: 10px"></div>
+          <h3 class="percentage">
+            Percentage: &nbsp <span id="percentage"> &nbsp %</span>
+          </h3>
+          <div style="height: 6px"></div>
+          <h3 class="score">Score: &nbsp <span id="score">&nbsp </span></h3>
+          <div style="height: 10px"></div>
+          <h3 class="result">
+            Result: &nbsp <span id="resultId">&nbsp </span>
+          </h3>
+          <div style="height: 70px"></div>
+          <button id="one">Level 1</button>
+          <div style="height: 10px"></div>
+          <button id="two">Level 2</button>
+          <div style="height: 10px"></div>
+          <button id="three">Level 3</button>
+          <div style="height: 10px"></div>
+          <button id="newGame">New Game</button>
+        </div>
+        <div
+          class="center"
+          style="
+            width: 600px;
+            height: 490px;
+            border: 2px solid lightsalmon;
+            border-radius: 6px;
+            box-shadow: 1px 1px 2px 2px lightsalmon;
+          "
+        >
+          <canvas
+            id="canvas"
+            width="600"
+            height="490"
+            style="position: absolute; z-index: 5"
+          ></canvas>
+          <canvas
+            id="canvas2"
+            width="600"
+            height="490"
+            style="position: absolute; background: url('dalgonacandy.jpeg')"
+          ></canvas>
+        </div>
+        <div class="right" style="width: 150px; height: 240px">
+          <div class="about-div">
+            <button id="about">About the Game</button>
+          </div>
+          <div style="height: 40px"></div>
+          <div class="instruction-div">
+            <button id="instructions">
+              <div>Instructions</div>
+            </button>
+          </div>
+          <div style="height: 40px"></div>
+          <div class="how-div"><button id="how">How-To-Play</button></div>
+        </div>
+      </div>
     </section>
   </body>
   <script src="./dist/main.js"></script>
