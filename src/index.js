@@ -53,7 +53,7 @@ aboutgame.addEventListener("click", () => {
 var timer;
 
 const timeLeft = document.getElementById("count-down");
-const startingMinutes = 100; // change back to 1 after debugging.
+const startingMinutes = 1; // change back to 1 after debugging.
 let time = startingMinutes * 15; // change 3 to 25 after debugging.
 
 window.addEventListener("load", () => {
@@ -66,7 +66,8 @@ window.addEventListener("load", () => {
       this.points = new Set();
       this.ongoing = false;
       this.level = 0;
-      this.score = 1000;
+      // this.score = 1000;
+      this.score = 0;
     }
     timeStart() {
       this.ongoing = true;
@@ -79,7 +80,7 @@ window.addEventListener("load", () => {
         timeLeft.innerHTML = `${minutes}:${seconds}`;
         if (time > 0 && this.ongoing === true) {
           time -= 1;
-        } else {
+        } else if (time === 0) {
           this.timeEnd();
         }
       }, 1000);
@@ -100,29 +101,168 @@ window.addEventListener("load", () => {
   }
   let player = new Player();
 
-  function startPosition(e) {
-    painting = true;
-    if (painting) {
+  // function startPosition(e) {
+  //   painting = true;
+  //   if (painting) {
+  //     console.log(player.ongoing, "1");
+  //     console.log(e, "this is the mouse event");
+  //     if (player.ongoing === false) {
+  //       player.timeStart();
+  //     }
+  //   }
+  //   // draw(e);
+  //   e.preventDefault();
+  // }
+
+  // function finishedPosition(e) {
+  //   painting = false;
+  //   ctx.beginPath();
+  //   e.preventDefault();
+  // }
+
+  // function draw(e) {
+  //   if (!painting) return;
+  //   ctx.lineWidth = 5;
+  //   ctx.lineCap = "round";
+  //   ctx.strokeStyle = "white";
+  //   // ctx.lineTo(e.offsetX, e.offsetY);
+
+  // if (player.level === 1) {
+  //   circlepoints.forEach((point) => {
+  //     if (
+  //       Math.abs(e.offsetX - point[0]) <= 2 &&
+  //       Math.abs(e.offsetY - point[1]) <= 2
+  //     ) {
+  //       player.points.add(point);
+  //     }
+  //   });
+
+  //   if (player.ongoing === true) {
+  //     if (player.points.size / circlepoints.length === 1) {
+  //       win();
+  //     }
+  //   } else if (player.ongoing === false && time === 0) {
+  //     // if (player.ongoing === false) {
+  //     if (player.points.size >= circlepoints.length * 0.8) {
+  //       win();
+  //     } else {
+  //       lose();
+  //     }
+  //   }
+  //   if (time === 0) return;
+  //   perc.textContent = ` ${Math.round(
+  //     (player.points.size / circlepoints.length) * 100
+  //   )}%`;
+  //   pts.textContent = `${Math.round(
+  //     player.score + 1000 * (player.points.size / circlepoints.length)
+  //   )}`;
+  // }
+  // if (player.level === 2) {
+  //   starpoints.forEach((point) => {
+  //     if (
+  //       Math.abs(e.offsetX - point[0]) <= 2 &&
+  //       Math.abs(e.offsetY - point[1]) <= 2
+  //     ) {
+  //       player.points.add(point);
+  //     }
+  //   });
+  //   if (player.ongoing === false && time === 0) {
+  //     if (player.points.size >= starpoints.length * 0.8) {
+  //       win();
+  //     } else {
+  //       lose();
+  //     }
+  //   }
+  //   if (time === 0) return;
+  //   perc.textContent = ` ${Math.round(
+  //     (player.points.size / starpoints.length) * 100
+  //   )}%`;
+  //   pts.textContent = `${Math.round(
+  //     player.score * (player.points.size / starpoints.length)
+  //   )}`;
+  // }
+  // if (player.level === 3) {
+  //   starcirclepoints.forEach((point) => {
+  //     if (
+  //       Math.abs(e.offsetX - point[0]) <= 2 &&
+  //       Math.abs(e.offsetY - point[1]) <= 2
+  //     ) {
+  //       player.points.add(point);
+  //     }
+  //   });
+
+  //   if (player.ongoing === false) {
+  //     if (player.points.size >= starcirclepoints.length * 0.8) win();
+  //     else {
+  //       lose();
+  //     }
+  //   }
+  //   if (time === 0) return;
+  //   perc.textContent = ` ${Math.round(
+  //     (player.points.size / starcirclepoints.length) * 100
+  //   )}%`;
+  //   pts.textContent = `${Math.round(
+  //     player.score * (player.points.size / starcirclepoints.length)
+  //   )}`;
+  // }
+  //   console.log(player.ongoing, "2");
+  //   ctx.lineTo(e.offsetX, e.offsetY);
+  //   ctx.stroke();
+  //   ctx.beginPath();
+  //   ctx.moveTo(e.offsetX, e.offsetY);
+
+  //   e.preventDefault();
+  // }
+  // let start = true;
+  // function stop(e) {
+  //   if (start) {
+  //     ctx.stroke();
+  //     ctx.closePath();
+  //     start = false;
+  //   }
+  //   e.preventDefault();
+  // }
+
+  // canvas.addEventListener("mousedown", startPosition, false);
+  // canvas.addEventListener("touchstart", finishedPosition, false);
+  // canvas.addEventListener("mousemove", draw, false);
+  // canvas.addEventListener("touchmove", draw, false);
+
+  // canvas.addEventListener("touchout", stop, false);
+  // canvas.addEventListener("mouseup", stop, false);
+  // canvas.addEventListener("mouseout", stop, false);
+
+  let is_drawing = false;
+
+  canvas.addEventListener("touchstart", start, false);
+  canvas.addEventListener("touchmove", draw, false);
+  canvas.addEventListener("mousedown", start, false);
+  canvas.addEventListener("mousemove", draw, false);
+
+  canvas.addEventListener("touchend", stop, false);
+  canvas.addEventListener("mouseup", stop, false);
+  canvas.addEventListener("mouseout", stop, false);
+
+  function start(e) {
+    is_drawing = true;
+    ctx.beginPath();
+    ctx.moveTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
+    if (is_drawing) {
       if (player.ongoing === false) {
         player.timeStart();
       }
     }
-    draw(e);
+    e.preventDefault();
   }
-
-  function finishedPosition() {
-    painting = false;
-    ctx.beginPath();
-  }
-
   function draw(e) {
-    if (!painting) return;
-    ctx.lineWidth = 5;
-    ctx.lineCap = "round";
-    ctx.strokeStyle = "white";
-    ctx.lineTo(e.offsetX, e.offsetY);
-    console.log([e.offsetX, e.offsetY]);
-
+    if (is_drawing) {
+      ctx.lineTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
+      ctx.strokeStyle = "white";
+      ctx.lineWidth = "5";
+      ctx.lineCap = "round";
+      ctx.lineJoin = "round";
+      ctx.stroke();
+    }
     if (player.level === 1) {
       circlepoints.forEach((point) => {
         if (
@@ -132,7 +272,13 @@ window.addEventListener("load", () => {
           player.points.add(point);
         }
       });
-      if (player.ongoing === false) {
+
+      if (player.ongoing === true) {
+        if (player.points.size / circlepoints.length === 1) {
+          win();
+        }
+      } else if (player.ongoing === false && time === 0) {
+        // if (player.ongoing === false) {
         if (player.points.size >= circlepoints.length * 0.8) {
           win();
         } else {
@@ -144,7 +290,7 @@ window.addEventListener("load", () => {
         (player.points.size / circlepoints.length) * 100
       )}%`;
       pts.textContent = `${Math.round(
-        player.score * (player.points.size / circlepoints.length)
+        player.score + 1000 * (player.points.size / circlepoints.length)
       )}`;
     }
     if (player.level === 2) {
@@ -156,7 +302,11 @@ window.addEventListener("load", () => {
           player.points.add(point);
         }
       });
-      if (player.ongoing === false) {
+      if (player.ongoing === true) {
+        if (player.points.size / starpoints.length === 1) {
+          win();
+        }
+      } else if (player.ongoing === false && time === 0) {
         if (player.points.size >= starpoints.length * 0.8) {
           win();
         } else {
@@ -168,7 +318,7 @@ window.addEventListener("load", () => {
         (player.points.size / starpoints.length) * 100
       )}%`;
       pts.textContent = `${Math.round(
-        player.score * (player.points.size / starpoints.length)
+        player.score + 1000 * (player.points.size / starpoints.length)
       )}`;
     }
     if (player.level === 3) {
@@ -181,9 +331,14 @@ window.addEventListener("load", () => {
         }
       });
 
-      if (player.ongoing === false) {
-        if (player.points.size >= starcirclepoints.length * 0.8) win();
-        else {
+      if (player.ongoing === true) {
+        if (player.points.size / starcirclepoints.length === 1) {
+          win();
+        }
+      } else if (player.ongoing === false && time === 0) {
+        if (player.points.size >= starcirclepoints.length * 0.8) {
+          win();
+        } else {
           lose();
         }
       }
@@ -192,16 +347,20 @@ window.addEventListener("load", () => {
         (player.points.size / starcirclepoints.length) * 100
       )}%`;
       pts.textContent = `${Math.round(
-        player.score * (player.points.size / starcirclepoints.length)
+        player.score + 1000 * (player.points.size / starcirclepoints.length)
       )}`;
     }
-    ctx.stroke();
-    ctx.beginPath();
-    ctx.moveTo(e.offsetX, e.offsetY);
+    e.preventDefault();
   }
-  canvas.addEventListener("mousedown", startPosition);
-  canvas.addEventListener("mouseup", finishedPosition);
-  canvas.addEventListener("mousemove", draw); //e => draw(e));
+
+  function stop(e) {
+    if (is_drawing) {
+      ctx.stroke();
+      ctx.closePath();
+      is_drawing = false;
+    }
+    e.preventDefault();
+  }
 
   clearCanvas.addEventListener("click", () => {
     // New Game
@@ -209,6 +368,8 @@ window.addEventListener("load", () => {
     newCanvas();
     player.restartTime();
     player.points = new Set();
+    pts.textContent = `0`;
+    resultDisplay.textContent = "";
   });
 
   levelOne.addEventListener("click", () => {
@@ -219,6 +380,8 @@ window.addEventListener("load", () => {
     player.restartTime();
     player.level = 1;
     player.points = new Set();
+    pts.textContent = `0`;
+    resultDisplay.textContent = "";
   });
 
   levelTwo.addEventListener("click", () => {
@@ -229,6 +392,8 @@ window.addEventListener("load", () => {
     player.restartTime();
     player.level = 2;
     player.points = new Set();
+    pts.textContent = `0`;
+    resultDisplay.textContent = "";
   });
 
   levelThree.addEventListener("click", () => {
@@ -239,13 +404,21 @@ window.addEventListener("load", () => {
     player.restartTime();
     player.level = 3;
     player.points = new Set();
+    pts.textContent = `0`;
+    resultDisplay.textContent = "";
   });
 
   function win() {
     resultDisplay.textContent = "You win!";
+    window.alert("CLEARED\n YOU HAVE CLEARED THE LEVEL!");
+    clearInterval(timer);
+    ctx.reset();
   }
 
   function lose() {
     resultDisplay.textContent = "You Lose!";
+    window.alert("YOU LOSE\n TRY AGAIN NEXT TIME! ");
+    clearInterval(timer);
+    ctx.reset();
   }
 });
