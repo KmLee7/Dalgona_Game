@@ -233,15 +233,22 @@ window.addEventListener("load", () => {
   // canvas.addEventListener("mouseout", stop, false);
 
   let is_drawing = false;
+  let is_drawing2 = true;
+  if (is_drawing2) {
+    canvas.addEventListener("touchstart", start, false);
+    canvas.addEventListener("touchmove", draw, false);
+    canvas.addEventListener("mousedown", start, false);
+    canvas.addEventListener("mousemove", draw, false);
 
-  canvas.addEventListener("touchstart", start, false);
-  canvas.addEventListener("touchmove", draw, false);
-  canvas.addEventListener("mousedown", start, false);
-  canvas.addEventListener("mousemove", draw, false);
-
-  canvas.addEventListener("touchend", stop, false);
-  canvas.addEventListener("mouseup", stop, false);
-  canvas.addEventListener("mouseout", stop, false);
+    canvas.addEventListener("touchend", stop, false);
+    canvas.addEventListener("mouseup", stop, false);
+    canvas.addEventListener("mouseout", stop, false);
+  } else {
+    canvas.removeEventListener("touchstart", start, false);
+    canvas.removeEventListener("touchmove", draw, false);
+    canvas.removeEventListener("mousedown", start, false);
+    canvas.removeEventListener("mousemove", draw, false);
+  }
 
   function start(e) {
     is_drawing = true;
@@ -255,14 +262,15 @@ window.addEventListener("load", () => {
     e.preventDefault();
   }
   function draw(e) {
-    if (is_drawing) {
-      ctx.lineTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
-      ctx.strokeStyle = "white";
-      ctx.lineWidth = "5";
-      ctx.lineCap = "round";
-      ctx.lineJoin = "round";
-      ctx.stroke();
+    if (!is_drawing) {
+      return;
     }
+    ctx.lineTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
+    ctx.strokeStyle = "white";
+    ctx.lineWidth = "5";
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    ctx.stroke();
     if (player.level === 1) {
       circlepoints.forEach((point) => {
         if (
@@ -370,6 +378,7 @@ window.addEventListener("load", () => {
     player.points = new Set();
     pts.textContent = `0`;
     resultDisplay.textContent = "";
+    is_drawing2 = true;
   });
 
   levelOne.addEventListener("click", () => {
@@ -382,6 +391,7 @@ window.addEventListener("load", () => {
     player.points = new Set();
     pts.textContent = `0`;
     resultDisplay.textContent = "";
+    is_drawing2 = true;
   });
 
   levelTwo.addEventListener("click", () => {
@@ -413,6 +423,7 @@ window.addEventListener("load", () => {
     window.alert("CLEARED\n YOU HAVE CLEARED THE LEVEL!");
     clearInterval(timer);
     ctx.reset();
+    is_drawing2 = false;
   }
 
   function lose() {
@@ -420,5 +431,6 @@ window.addEventListener("load", () => {
     window.alert("YOU LOSE\n TRY AGAIN NEXT TIME! ");
     clearInterval(timer);
     ctx.reset();
+    is_drawing2 = false;
   }
 });
