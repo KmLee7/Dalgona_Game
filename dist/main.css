@@ -11,21 +11,24 @@
 
 .nav {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
 }
 
 .nav-left {
   width: 210px;
 }
 
-.nav-right {
+.nav-middle {
   align-items: center;
-  margin-left: 21%;
+  /* margin-left: 21%; */
   font-size: 36px;
   font-weight: 700;
   text-align: center;
   width: 400px;
   padding-top: 2%;
+}
+.nav-right {
+  width: 210px;
 }
 
 .timer {
@@ -158,5 +161,10 @@
 #one:hover,
 #two:hover,
 #three:hover {
+  background-color: lightsalmon;
+}
+#about:hover,
+#instructions:hover,
+#how:hover {
   background-color: lightsalmon;
 }
