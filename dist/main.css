@@ -163,3 +163,8 @@
 #three:hover {
   background-color: lightsalmon;
 }
+#about:hover,
+#instructions:hover,
+#how:hover {
+  background-color: lightsalmon;
+}
