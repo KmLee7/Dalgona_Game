@@ -274,8 +274,8 @@ window.addEventListener("load", () => {
     if (player.level === 1) {
       circlepoints.forEach((point) => {
         if (
-          Math.abs(e.offsetX - point[0]) <= 2 &&
-          Math.abs(e.offsetY - point[1]) <= 2
+          Math.abs(e.offsetX - point[0]) <= 3 &&
+          Math.abs(e.offsetY - point[1]) <= 3
         ) {
           player.points.add(point);
         }
@@ -304,8 +304,8 @@ window.addEventListener("load", () => {
     if (player.level === 2) {
       starpoints.forEach((point) => {
         if (
-          Math.abs(e.offsetX - point[0]) <= 2 &&
-          Math.abs(e.offsetY - point[1]) <= 2
+          Math.abs(e.offsetX - point[0]) <= 3 &&
+          Math.abs(e.offsetY - point[1]) <= 3
         ) {
           player.points.add(point);
         }
@@ -332,8 +332,8 @@ window.addEventListener("load", () => {
     if (player.level === 3) {
       starcirclepoints.forEach((point) => {
         if (
-          Math.abs(e.offsetX - point[0]) <= 2 &&
-          Math.abs(e.offsetY - point[1]) <= 2
+          Math.abs(e.offsetX - point[0]) <= 3 &&
+          Math.abs(e.offsetY - point[1]) <= 3
         ) {
           player.points.add(point);
         }
