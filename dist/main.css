@@ -5,27 +5,26 @@
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.scss ***!
   \************************************************************************************************************************************ */
 .body {
-  justify-content: space-between;
   display: flex;
+  justify-content: space-between;
 }
 
 .nav {
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
 }
-
-.nav-left {
-  width: 210px;
-}
-
-.nav-right {
+.game-title {
+  display: flex;
+  justify-content: center;
   align-items: center;
-  margin-left: 21%;
-  font-size: 36px;
+  border: 1px solid beige;
+  border-radius: 8px;
+  box-shadow: 1px 1px 2px 2px lightsalmon;
+  background-color: white;
+  width: 260px;
   font-weight: 700;
-  text-align: center;
-  width: 400px;
-  padding-top: 2%;
+  font-size: 24px;
+  height: 40px;
 }
 
 .timer {
@@ -161,6 +160,7 @@
   background-color: lightsalmon;
 }
 
-.links-levels {
+.levels {
   display: flex;
+  justify-content: center;
 }
