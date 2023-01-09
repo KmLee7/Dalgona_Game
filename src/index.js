@@ -70,6 +70,7 @@ window.addEventListener("load", () => {
       this.score = 0;
     }
     timeStart() {
+      console.log("hi");
       this.ongoing = true;
       timer = setInterval(() => {
         const minutes = Math.floor(time / 60);
@@ -252,6 +253,7 @@ window.addEventListener("load", () => {
 
   function start(e) {
     is_drawing = true;
+    console.log("hi");
     ctx.beginPath();
     ctx.moveTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
     if (is_drawing) {
@@ -416,6 +418,7 @@ window.addEventListener("load", () => {
     player.points = new Set();
     pts.textContent = `0`;
     resultDisplay.textContent = "";
+    console.log("bye");
   });
 
   function win() {

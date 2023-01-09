@@ -5,27 +5,27 @@
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[1].use[1]!./node_modules/sass-loader/dist/cjs.js!./src/index.scss ***!
   \************************************************************************************************************************************ */
 .body {
-  display: flex;
   justify-content: space-between;
+  display: flex;
 }
 
 .nav {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .nav-left {
   width: 210px;
 }
 
-.nav-middle {
+.nav-right {
   align-items: center;
-
+  margin-left: 21%;
   font-size: 36px;
   font-weight: 700;
   text-align: center;
   width: 400px;
-  height: 50px;
+  padding-top: 2%;
 }
 
 .timer {
@@ -132,12 +132,10 @@
 
 #newGame {
   display: flex;
-  align-items: center;
   font-size: 27px;
   border: 1px solid beige;
   box-shadow: 1px 1px 2px 2px lightsalmon;
   border-radius: 8px;
-  height: 41px;
   background-color: white;
 }
 
@@ -162,20 +160,7 @@
 #three:hover {
   background-color: lightsalmon;
 }
-#about:hover,
-#instructions:hover,
-#how:hover {
-  background-color: lightsalmon;
-}
-/* .links-levels {
-  display: flex;
-  justify-content: space-around;
-} */
-.levels {
-  display: flex;
-  justify-content: center;
-}
 
-.links {
+.links-levels {
   display: flex;
 }
