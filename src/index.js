@@ -68,23 +68,25 @@ window.addEventListener("load", () => {
       this.level = 0;
       // this.score = 1000;
       this.score = 0;
+      this.game_start = false;
     }
     timeStart() {
-      console.log("hi");
-      this.ongoing = true;
-      timer = setInterval(() => {
-        const minutes = Math.floor(time / 60);
-        let seconds = time % 60;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
-        // uncomment the console.logs if needed
-        // console.log("going");
-        timeLeft.innerHTML = `${minutes}:${seconds}`;
-        if (time > 0 && this.ongoing === true) {
-          time -= 1;
-        } else if (time === 0) {
-          this.timeEnd();
-        }
-      }, 1000);
+      if (this.game_start === true) {
+        this.ongoing = true;
+        timer = setInterval(() => {
+          const minutes = Math.floor(time / 60);
+          let seconds = time % 60;
+          seconds = seconds < 10 ? "0" + seconds : seconds;
+          // uncomment the console.logs if needed
+          // console.log("going");
+          timeLeft.innerHTML = `${minutes}:${seconds}`;
+          if (time > 0 && this.ongoing === true) {
+            time -= 1;
+          } else if (time === 0) {
+            this.timeEnd();
+          }
+        }, 1000);
+      }
     }
     timeEnd() {
       // console.log("stopped");
@@ -235,6 +237,7 @@ window.addEventListener("load", () => {
 
   let is_drawing = false;
   let is_drawing2 = true;
+
   if (is_drawing2) {
     canvas.addEventListener("touchstart", start, false);
     canvas.addEventListener("touchmove", draw, false);
@@ -252,16 +255,18 @@ window.addEventListener("load", () => {
   }
 
   function start(e) {
-    is_drawing = true;
-    console.log("hi");
-    ctx.beginPath();
-    ctx.moveTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
-    if (is_drawing) {
-      if (player.ongoing === false) {
-        player.timeStart();
+    if (player.game_start) {
+      is_drawing = true;
+
+      ctx.beginPath();
+      ctx.moveTo(e.clientX - canvas.offsetLeft, e.clientY - canvas.offsetTop);
+      if (is_drawing) {
+        if (player.ongoing === false) {
+          player.timeStart();
+        }
       }
+      e.preventDefault();
     }
-    e.preventDefault();
   }
   function draw(e) {
     if (!is_drawing) {
@@ -381,6 +386,7 @@ window.addEventListener("load", () => {
     pts.textContent = `0`;
     resultDisplay.textContent = "";
     is_drawing2 = true;
+    player.game_start = false;
   });
 
   levelOne.addEventListener("click", () => {
@@ -394,6 +400,7 @@ window.addEventListener("load", () => {
     pts.textContent = `0`;
     resultDisplay.textContent = "";
     is_drawing2 = true;
+    player.game_start = true;
   });
 
   levelTwo.addEventListener("click", () => {
@@ -406,6 +413,8 @@ window.addEventListener("load", () => {
     player.points = new Set();
     pts.textContent = `0`;
     resultDisplay.textContent = "";
+    is_drawing2 = true;
+    player.game_start = true;
   });
 
   levelThree.addEventListener("click", () => {
@@ -418,22 +427,29 @@ window.addEventListener("load", () => {
     player.points = new Set();
     pts.textContent = `0`;
     resultDisplay.textContent = "";
-    console.log("bye");
+    is_drawing2 = true;
+    player.game_start = true;
   });
 
   function win() {
     resultDisplay.textContent = "You win!";
-    window.alert("CLEARED\n YOU HAVE CLEARED THE LEVEL!");
+    if (player.game_start === true) {
+      window.alert("CLEARED\n YOU HAVE CLEARED THE LEVEL!");
+    }
     clearInterval(timer);
     ctx.reset();
     is_drawing2 = false;
+    player.game_start = false;
   }
 
   function lose() {
     resultDisplay.textContent = "You Lose!";
-    window.alert("YOU LOSE\n TRY AGAIN NEXT TIME! ");
+    if (player.game_start === true) {
+      window.alert("YOU LOSE\n TRY AGAIN NEXT TIME! ");
+    }
     clearInterval(timer);
     ctx.reset();
     is_drawing2 = false;
+    player.game_start = false;
   }
 });
