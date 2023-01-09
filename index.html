@@ -17,37 +17,13 @@
     <section class="section">
       <div class="nav">
         <div
-          class="nav-left"
-          style="
-            border: 1px solid beige;
-            border-radius: 8px;
-            box-shadow: 1px 1px 2px 2px lightsalmon;
-            background-color: white;
-            margin-left: 10px;
-            margin-top: 10px;
-          "
-        >
-          <a target="_blank" href="https://github.com/KmLee7/Dalgona_Game"
-            ><img
-              src="https://img.icons8.com/plasticine/100/000000/github-squared.png"
-              alt="gihub"
-          /></a>
-          <a
-            target="_blank"
-            href="https://www.linkedin.com/in/kyungmin-lee-1767a6255/"
-            ><img
-              src="https://img.icons8.com/plasticine/100/000000/linkedin.png"
-              alt="linkedin"
-          /></a>
-        </div>
-        <div
           class="nav-middle"
           style="
+            justify-content: center;
             border: 1px solid beige;
             border-radius: 8px;
             box-shadow: 1px 1px 2px 2px lightsalmon;
             background-color: white;
-            margin-top: 10px;
           "
         >
           Dalgona Game(Ppop Gi)
@@ -55,7 +31,10 @@
         <div class="nav-right"></div>
       </div>
       <div style="height: 22px"></div>
-      <div class="body">
+      <div
+        class="body"
+        style="display: flex; justify-content: space-around; margin: 0 5%"
+      >
         <div
           class="left"
           style="
@@ -65,6 +44,8 @@
             border-radius: 8px;
             box-shadow: 1px 1px 2px 2px lightsalmon;
             background-color: white;
+            margin-left: auto;
+            margin-right: 4%;
           "
           ;
         >
@@ -80,13 +61,30 @@
             Result: &nbsp <span id="resultId">&nbsp </span>
           </h3>
           <div style="height: 70px"></div>
-          <button id="one">Level 1</button>
-          <div style="height: 10px"></div>
-          <button id="two">Level 2</button>
-          <div style="height: 10px"></div>
-          <button id="three">Level 3</button>
-          <div style="height: 10px"></div>
-          <button id="newGame">New Game</button>
+          <div
+            class="nav-left"
+            style="
+              display: flex;
+              border: 1px solid beige;
+              border-radius: 8px;
+              box-shadow: 1px 1px 2px 2px lightsalmon;
+              background-color: white;
+              width: 200px;
+            "
+          >
+            <a target="_blank" href="https://github.com/KmLee7/Dalgona_Game"
+              ><img
+                src="https://img.icons8.com/plasticine/100/000000/github-squared.png"
+                alt="gihub"
+            /></a>
+            <a
+              target="_blank"
+              href="https://www.linkedin.com/in/kyungmin-lee-1767a6255/"
+              ><img
+                src="https://img.icons8.com/plasticine/100/000000/linkedin.png"
+                alt="linkedin"
+            /></a>
+          </div>
         </div>
         <div
           class="center"
@@ -111,7 +109,15 @@
             style="position: absolute; background: url('dalgonacandy.jpeg')"
           ></canvas>
         </div>
-        <div class="right" style="width: 150px; height: 240px">
+        <div
+          class="right"
+          style="
+            width: 150px;
+            height: 240px;
+            margin-right: auto;
+            margin-left: 4%;
+          "
+        >
           <div class="about-div">
             <button id="about">About the Game</button>
           </div>
@@ -127,5 +133,42 @@
       </div>
     </section>
   </body>
+  <footer>
+    <div style="height: 70px"></div>
+    <div class="links-levels">
+      <!-- <div
+        class="links"
+        style="
+          border: 1px solid beige;
+          border-radius: 8px;
+          box-shadow: 1px 1px 2px 2px lightsalmon;
+          background-color: white;
+          width: 200px;
+        "
+      >
+        <a target="_blank" href="https://github.com/KmLee7/Dalgona_Game"
+          ><img
+            src="https://img.icons8.com/plasticine/100/000000/github-squared.png"
+            alt="gihub"
+        /></a>
+        <a
+          target="_blank"
+          href="https://www.linkedin.com/in/kyungmin-lee-1767a6255/"
+          ><img
+            src="https://img.icons8.com/plasticine/100/000000/linkedin.png"
+            alt="linkedin"
+        /></a>
+      </div> -->
+      <div class="levels">
+        <button id="newGame">New Game</button>
+        <div style="width: 20px"></div>
+        <button id="one">Level 1</button>
+        <div style="width: 20px"></div>
+        <button id="two">Level 2</button>
+        <div style="width: 20px"></div>
+        <button id="three">Level 3</button>
+      </div>
+    </div>
+  </footer>
   <script src="./dist/main.js"></script>
 </html>
