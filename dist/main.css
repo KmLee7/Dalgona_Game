@@ -13,6 +13,7 @@
   display: flex;
   justify-content: center;
 }
+
 .game-title {
   display: flex;
   justify-content: center;
@@ -65,10 +66,15 @@
   align-items: center;
 }
 
-.instruction-div {
+#instruction-div {
   display: flex;
   justify-content: center;
   margin-right: 10px;
+  display: none;
+  border: 1px solid beige;
+  background-color: white;
+  box-shadow: 1px 1px 2px 2px lightsalmon;
+  margin-bottom: 10px;
 }
 
 #instructions {
@@ -81,14 +87,18 @@
   border: 1px solid beige;
   box-shadow: 1px 1px 2px 2px lightsalmon;
   margin-right: 10px;
-  /* width: 150px;
-    height: 60px; */
+  margin-bottom: 10px;
 }
 
-.how-div {
+#how-div {
   display: flex;
   justify-content: center;
   margin-right: 10px;
+  display: none;
+  border: 1px solid beige;
+  background-color: white;
+  box-shadow: 1px 1px 2px 2px lightsalmon;
+  margin-bottom: 10px;
 }
 
 #how {
@@ -101,12 +111,18 @@
   border: 1px solid beige;
   box-shadow: 1px 1px 2px 2px lightsalmon;
   margin-right: 10px;
+  margin-bottom: 10px;
 }
 
-.about-div {
+#about-div {
   display: flex;
   justify-content: center;
   margin-right: 10px;
+  margin-bottom: 10px;
+  display: none;
+  border: 1px solid beige;
+  background-color: white;
+  box-shadow: 1px 1px 2px 2px lightsalmon;
 }
 
 #about {
@@ -119,6 +135,7 @@
   border: 1px solid beige;
   box-shadow: 1px 1px 2px 2px lightsalmon;
   margin-right: 10px;
+  margin-bottom: 10px;
 }
 
 .popped {

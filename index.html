@@ -106,17 +106,21 @@
             margin-left: 4%;
           "
         >
-          <div class="about-div">
+          <!-- <div class="about-div">
             <button id="about">About the Game</button>
+          </div> -->
+          <button id="about" onclick="aboutFunc('about-div')">About the Game</button>
+          <div id="about-div">Dalgona Game(ppopgi) was a popular street snack/game in the 70s and 80s and became well-known after it was played in one of the episode of the Netflix series Squid Game. I created this game to give the users an experience of poppgi 
           </div>
-          <div style="height: 40px"></div>
-          <div class="instruction-div">
-            <button id="instructions">
-              <div>Instructions</div>
-            </button>
+          <button id="instructions" onclick="instructFunc('instruction-div')">
+            <div>Instructions</div>
+          </button>
+          <div id="instruction-div">Your goal is to trace through the curved inline (black line) of the shape depending on level. Timer will start when you click on the game. Highest point you can achieve is 1000. Good Luck!
           </div>
-          <div style="height: 40px"></div>
-          <div class="how-div"><button id="how">How-To-Play</button></div>
+          <button id="how" onclick="howFunc('how-div')">How-To-Play</button>
+          <div id="how-div"> Select level that you want to play. Click on game and start tracing the shape line!
+
+          </div>
         </div>
       </div>
     </section>
@@ -134,5 +138,21 @@
       </div>
     </div>
   </footer>
-  <script src="./dist/main.js"></script>
+  <script src="./dist/main.js">
+
+  </script>
+  <script>
+       function aboutFunc(id) {
+      let div = document.getElementById(id);
+      div.style.display = div.style.display == "none" ? "block" : "none";
+    }
+    function instructFunc(id) {
+      let div = document.getElementById(id);
+      div.style.display = div.style.display == "none" ? "block" : "none";
+    }
+    function howFunc(id) {
+      let div = document.getElementById(id);
+      div.style.display = div.style.display == "none" ? "block" : "none";
+    }
+  </script>
 </html>

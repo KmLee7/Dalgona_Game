@@ -14,41 +14,6 @@ const levelThree = document.getElementById("three");
 const resultDisplay = document.getElementById("resultId");
 const perc = document.getElementById("percentage");
 const pts = document.getElementById("score");
-const instruct = document.getElementById("instructions");
-const howto = document.getElementById("how");
-const aboutgame = document.getElementById("about");
-
-instruct.addEventListener("click", () => {
-  if (!instruct.classList.contains("popped")) {
-    instruct.classList.add("popped");
-    instruct.innerHTML =
-      "Your goal is to trace through the curved inline (black line) of the shape depending on level. Timer will start when you click on the game. Highest point you can achieve is 1000. Good Luck!";
-  } else {
-    instruct.innerHTML = "Instructions";
-    instruct.classList.remove("popped");
-  }
-});
-howto.addEventListener("click", () => {
-  if (!howto.classList.contains("popped")) {
-    howto.classList.add("popped");
-    howto.innerHTML =
-      "Select level that you want to play. Click on game and start tracing the shape line!";
-  } else {
-    howto.classList.remove("popped");
-    howto.innerHTML = "How-To-Play";
-  }
-});
-
-aboutgame.addEventListener("click", () => {
-  if (!aboutgame.classList.contains("popped")) {
-    aboutgame.classList.add("popped");
-    aboutgame.innerHTML =
-      "Dalgona Game(ppopgi) was a popular street snack/game in the 70s and 80s and became well-known after it was played in one of the episode of the Netflix series Squid Game. I created this game to give the users an experience of poppgi";
-  } else {
-    aboutgame.classList.remove("popped");
-    aboutgame.innerHTML = "About the Game";
-  }
-});
 
 var timer;
 
@@ -91,6 +56,7 @@ window.addEventListener("load", () => {
     timeEnd() {
       // console.log("stopped");
       this.ongoing = false;
+      this.game_start = false;
       clearInterval(timer);
     }
     restartTime() {
@@ -433,7 +399,7 @@ window.addEventListener("load", () => {
 
   function win() {
     resultDisplay.textContent = "You win!";
-    if (player.game_start === true) {
+    if (player.game_start === true && player.ongoing === false) {
       window.alert("CLEARED\n YOU HAVE CLEARED THE LEVEL!");
     }
     clearInterval(timer);
@@ -444,7 +410,7 @@ window.addEventListener("load", () => {
 
   function lose() {
     resultDisplay.textContent = "You Lose!";
-    if (player.game_start === true) {
+    if (player.game_start === true && player.ongoing === false) {
       window.alert("YOU LOSE\n TRY AGAIN NEXT TIME! ");
     }
     clearInterval(timer);
